@@ -318,4 +318,85 @@ body {
         transform: translate(-50%, -50%) scale(1);
     }
 
+    .result-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: #ffffff;
+        border-radius: 5px;
+        display: flex;
+        padding: 25px 30px;
+        width: 450px;
+        align-items: center;
+        flex-direction: column;
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+
+
+       
+
+        .crownIcon {
+            font-weight: 900;
+            font-size: 100px;
+            color: #007bff;
+        }
+        .completeText {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .scoreText {
+            span {
+                display: flex;
+                margin: 10px 0;
+                font-size: 18px;
+                font-weight: 500;
+            }
+            p {
+                padding: 0 4px;
+                font-weight: 600;
+            }
+        }
+
+        .result-box-button-container {
+            display: flex;
+            margin: 20px 0;
+
+           button {
+            margin: 0 10px;
+            height: 45px;
+            padding: 0 20px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            transition: all 0.3s ease;
+           }
+
+           .replay-quiz {
+            color: #fff;
+            background-color: #007bff;
+           }
+           .Quit-quiz {
+            color: #007bff;
+            background: #fff;
+           }
+        }
+    }
+
+    .result-box.activeResultBox {
+         opacity: 1;
+        z-index: 5;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+
+    }
+
 }

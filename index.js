@@ -10,6 +10,12 @@ let timeline = document.querySelector('.timeline');
 let currentQuestionIndicator = document.querySelector('.currentQuestionIndicator');
 let progressBar = document.querySelector('.progressBar');
 let timeLineTitle = document.querySelector('.time-line-title');
+let scoreText = document.querySelector('.scoreText');
+
+let replayQuiz = document.querySelector('.replay-quiz');
+let QuitQuiz = document.querySelector('.Quit-quiz');
+let resultBox = document.querySelector('.result-box');
+
 let currentQuestionIndex = 0;
 let userScore = 0;
 
@@ -51,8 +57,33 @@ nextBtn.addEventListener('click', () => {
     showQuestion(currentQuestionIndex);
     nextBtn.classList.remove('active');
     timeLineTitle.innerText = '.Time Left';
+    } else {
+        // you reached the last question
+        // you need to show result
+        clearInterval(progressBarInterval);
+        clearInterval(timeLineInterval);
+        quizBox.classList.remove('activeQuizBox');
+        resultBox.classList.add('activeResultBox');
+        handleShowResult();
     }
 });
+
+QuitQuiz.addEventListener('click', () => {
+    restart();
+    resultBox.classList.remove('activeResultBox');
+});
+
+replayQuiz.addEventListener('click', () => {
+     restart();
+    resultBox.classList.remove('activeResultBox');
+    quizBox.classList.add('activeQuizBox');
+     showQuestion(currentQuestionIndex);
+    handleTiming(15);
+    handleprogressBar();
+    timeLineTitle.innerText = 'Time left';
+
+})
+
 
 // function to show/render questions
 const showQuestion = (index) => {
@@ -159,3 +190,24 @@ const optionClickHandle = (e) => {
      }
 
 };
+
+
+const restart = () => {
+    clearInterval(progressBarInterval);
+    clearInterval(timeLineInterval);
+    currentQuestionIndex = 0;
+    userScore = 0;
+    timeLineTitle.innerText = 'Time left';
+
+}
+
+const handleShowResult = () => {
+    scoreText.innerHTML = `
+    <span>
+        and nice😎, you got
+            <p>${userScore}</p>
+            out of 
+            <p>${questions?.length}</p>
+     </span>`;
+  
+}
